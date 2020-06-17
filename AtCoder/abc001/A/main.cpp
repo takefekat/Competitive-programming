@@ -5,7 +5,7 @@ typedef long long ll;
 
 
 void solve(std::vector<long long> H){
-
+    cout << H[0] - H[1] << endl;
 }
 
 signed main(){
