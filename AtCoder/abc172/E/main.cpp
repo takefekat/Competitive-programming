@@ -10,10 +10,11 @@ vector<ll> fact;
 void solve(long long N, long long M){
 
     // M個からN個選ぶ組合せの数
-    for(auto &&a : n) {
-    
+    for(ll i=0; i<N; i++) {
+        if(  ) {
+            
+        }        
     }
-    
 
 }
 
