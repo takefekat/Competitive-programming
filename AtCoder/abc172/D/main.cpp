@@ -23,6 +23,11 @@ void solve(long long N){
     }
     
     cout << ans << endl;
+    vector<ll> v(N,0);
+    
+    for(auto &&elm : v) {
+        
+    }
     
 }
 
