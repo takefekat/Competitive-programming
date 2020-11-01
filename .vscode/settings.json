@@ -3,6 +3,8 @@
         "iostream": "cpp",
         "vector": "cpp",
         "functional": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "random": "cpp",
+        "cmath": "cpp"
     }
 }
