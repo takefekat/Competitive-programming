@@ -1,0 +1,4 @@
+rep(i, 3) {
+  cout << "Hello" << endl;
+  cout << "AtCoder" << endl;
+}

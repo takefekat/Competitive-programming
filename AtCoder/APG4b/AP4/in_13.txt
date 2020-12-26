@@ -1,0 +1,4 @@
+In function ‘int main()’:
+9:11: error: ‘i’ was not declared in this scope
+   cout << i << endl;
+           ^

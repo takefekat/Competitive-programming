@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+
+int main() {
+
+  rep(i, 5) {
+
+    if (i == 3) {
+      cout << "とばす" << endl;
+      continue; // i == 3 のとき これより後の処理をとばす
+    }
+
+    cout << i << endl;
+  }
+
+  cout << "終了" << endl;
+}

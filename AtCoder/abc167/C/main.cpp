@@ -1,56 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef vector<ll> vecll;
+typedef vector<ll> vll;
+typedef vector<vll> vvll;
 
-ll search(ll N, ll M, ll X, vecll &c, vector<vecll> &a)
+void solve(ll N, ll M, ll X, vll &c, vvll &a)
 {
-    ll res = INT_MAX;
-    ll N_pow = pow(2, N);
-    for (ll i = 0; i <= N_pow; i++)
+    ll ans = 1e+9;
+    for (ll bitset = 0; bitset < (1 << N); bitset++) // 2^N
     {
-        vecll sum_a(M, 0);
-        ll sumc = 0;
-        for (ll j = 1; j < pow(2, N); j = (j << 1))
+        // 選んだ本の組合せに対して、理解度の和と、値段の和を求める
+        vll rikai(M, 0);
+        ll cost = 0;
+        for (ll book = 0; book < N; book++) // N
         {
-            if ((i & j) != 0)
+            //【要注意】 "!="よりも"&"の方が優先順位が高いので、"!="の前にカッコがないと死ぬ
+            if ((bitset & (1 << book)) != 0)
             {
-                ll index = log2(j);
-                sumc += c[index];
-                for (ll k = 0; k < M; k++)
+                for (ll alg = 0; alg < M; alg++) // M
                 {
-                    sum_a[k] += a[index][k];
+                    rikai[alg] += a[book][alg];
                 }
+                cost += c[book];
             }
         }
-        bool ok = true;
-        for (ll j = 0; j < M; j++)
-        {
-            if (sum_a[j] < X)
-            {
-                ok = false;
-            }
-        }
-        if (ok)
-        {
-            res = min(res, sumc);
-        }
+
+        // 理解度が全てXを超える場合、costの最小値を求める
+        bool res = true;
+        for (ll alg = 0; alg < M; alg++)
+            if (rikai[alg] < X)
+                res = false;
+        if (res)
+            ans = min(ans, cost);
     }
-    if (res == INT_MAX)
-    {
-        res = -1;
-    }
-    return res;
+    ans = (ans == 1e+9 ? -1 : ans);
+    cout << ans << endl;
 }
 
 signed main()
 {
-    // Failed to predict input format
-
     ll N, M, X;
     cin >> N >> M >> X;
-    vecll c(N);
-    vector<vecll> a(N, vecll(M));
+
+    vll c(N);
+    vvll a(N, vll(M));
+
     for (ll i = 0; i < N; i++)
     {
         cin >> c[i];
@@ -59,8 +53,6 @@ signed main()
             cin >> a[i][j];
         }
     }
-    ll ans = search(N, M, X, c, a);
-    cout << ans << endl;
-
+    solve(N, M, X, c, a);
     return 0;
 }

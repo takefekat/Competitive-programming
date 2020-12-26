@@ -1,0 +1,9 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  rep(i, 3) {
+    cout << "Hello" << endl;
+    cout << "AtCoder" << endl;
+  }
+}
