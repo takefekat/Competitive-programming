@@ -3,42 +3,32 @@ using namespace std;
 typedef long long ll;
 typedef vector<ll> vec;
 
-void solve(long long N, long long W, std::vector<long long> w, std::vector<long long> v)
-{
-    const ll V = 100 * 1000;
-    vector<vec> dp(N + 1, vec(V + 1, 1e+18));
-    dp[0][0] = 0;
-    for (ll i = 0; i < N; i++)
-    {
-        for (ll j = 0; j <= V; j++)
-        {
-            dp[i + 1][j] = min(dp[i + 1][j], dp[i][j]);
-            if (j + v[i] <= V)
-                dp[i + 1][j + v[i]] = min(dp[i + 1][j + v[i]], dp[i][j] + w[i]);
-        }
-    }
-    ll ans = 0;
-    for (ll i = 0; i <= V; i++)
-    {
-        if (dp[N][i] <= W)
-            ans = max(ans, i);
-    }
-    cout << ans << endl;
+template <class T>
+void chmin(T& a, T b) {
+    if (a > b) a = b;
 }
 
-signed main()
-{
-    long long N;
-    scanf("%lld", &N);
-    long long W;
-    scanf("%lld", &W);
-    std::vector<long long> w(N);
-    std::vector<long long> v(N);
-    for (int i = 0; i < N; i++)
-    {
-        scanf("%lld", &w[i]);
-        scanf("%lld", &v[i]);
+int main() {
+    ll N, W;
+    cin >> N >> W;
+    vector<ll> w(N), v(N);
+
+    for (ll i = 0; i < N; i++) cin >> w[i] >> v[i];
+
+    // dp[i][v]: i番目までの品で、価値の和がvになる、最小の重さの和
+    vector<vector<ll>> dp(N + 1, vector<ll>(100001, 1e+10));
+    for (ll i = 0; i < N; i++) {
+        for (ll j = 0; j < 100001; j++) {
+            chmin(dp[i + 1][j], dp[i][j]);
+            if (j + v[i] <= 100000) chmin(dp[i + 1][j + v[i]], dp[i][j] + w[i]);
+        }
     }
-    solve(N, W, std::move(w), std::move(v));
-    return 0;
+
+    // Wを超えないdp[N][i]のうち、最大のiが答え
+    for (ll i = 100000; i >= 0; i--) {
+        if (dp[N][i] <= W) {
+            cout << i << endl;
+            break;
+        }
+    }
 }

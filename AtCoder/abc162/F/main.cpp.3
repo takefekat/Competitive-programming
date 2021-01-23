@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<ll> vll;
+typedef vector<vll> vvll;
+int main() {
+  ll N;
+  cin >> N;
+  vll A(N);
+  for (ll i = 0; i < N; i++) cin >> A[i];
+
+  vvll fsum(2, vll(N, 0)), rsum(2, vll(N, 0));
+
+  for (ll i = 0; i < N; i++) {
+    if (i != 0) {
+      fsum[0][i] += fsum[0][i - 1];  // even
+      fsum[1][i] += fsum[1][i - 1];  // odo
+    }
+    fsum[i % 2][i] += A[i];
+  }
+  for (ll i = N - 1; i >= 0; i--) {
+    if (i != N - 1) {
+      rsum[0][i] += rsum[0][i + 1];  // even
+      rsum[1][i] += rsum[1][i + 1];  // odo
+    }
+    rsum[i % 2][i] += A[i];
+  }
+  /*
+    for (ll i = 0; i < N; i++) {
+      cout << fsum[0][i] << " ";
+    }
+    cout << endl;
+    for (ll i = 0; i < N; i++) {
+      cout << fsum[1][i] << " ";
+    }
+    cout << endl;
+    for (ll i = 0; i < N; i++) {
+      cout << rsum[0][i] << " ";
+    }
+    cout << endl;
+    for (ll i = 0; i < N; i++) {
+      cout << rsum[1][i] << " ";
+    }
+    cout << endl;
+  */
+  ll ans;
+  if (N % 2 == 0) {
+    ans = max(fsum[0][N - 1], fsum[1][N - 1]);
+    for (ll i = 0; i < N - 2; i++) {
+      if (i % 2 == 0) {
+        ans = max(ans, fsum[0][i] + rsum[1][i + 2]);
+      } else {
+        ans = max(ans, fsum[0][i] + rsum[1][i + 2]);
+      }
+    }
+  } else {
+    ans = max(fsum[0][N - 2], fsum[1][N - 1]);
+    ans = max(ans, rsum[0][1]);
+    for (ll i = 0; i < N - 2; i++) {
+      if (i % 2 == 0) {
+        ans = max(ans, fsum[0][i] + rsum[1][i + 2]);
+        ans = max(ans, fsum[1][i] + rsum[0][i + 2]);
+        ans = max(ans, fsum[0][i] + rsum[0][i + 3]);
+      } else {
+        ans = max(ans, fsum[0][i] + rsum[1][i + 2]);
+        ans = max(ans, fsum[1][i] + rsum[0][i + 2]);
+        ans = max(ans, fsum[0][i] + rsum[0][i + 3]);
+      }
+    }
+  }
+
+  cout << ans << endl;
+
+  return 0;
+}

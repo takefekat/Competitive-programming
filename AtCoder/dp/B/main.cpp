@@ -2,31 +2,27 @@
 using namespace std;
 typedef long long ll;
 typedef vector<ll> vec;
-void solve(long long N, long long K, std::vector<long long> h)
-{
-    vec dp(N, 1e+18);
+
+template <class T>
+void chmin(T& a, T b) {
+    if (a > b) a = b;
+}
+
+int main() {
+    ll N, K;
+    cin >> N >> K;
+
+    vector<ll> h(N);
+    for (int i = 0; i < N; i++) {
+        cin >> h[i];
+    }
+
+    vector<ll> dp(N, 1e+10);
     dp[0] = 0;
-    for (ll i = 0; i < N; i++)
-    {
-        for (ll k = 1; i + k < N and k <= K; k++)
-        {
-            dp[i + k] = min(dp[i + k], dp[i] + abs(h[i] - h[i + k]));
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = 1; j <= K; j++) {
+            if (i + j <= N - 1) chmin(dp[i + j], dp[i] + abs(h[i] - h[i + j]));
         }
     }
     cout << dp[N - 1] << endl;
-}
-
-signed main()
-{
-    long long N;
-    scanf("%lld", &N);
-    long long K;
-    scanf("%lld", &K);
-    std::vector<long long> h(N);
-    for (int i = 0; i < N; i++)
-    {
-        scanf("%lld", &h[i]);
-    }
-    solve(N, K, std::move(h));
-    return 0;
 }
