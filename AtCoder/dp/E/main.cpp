@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef vector<ll> vec;
 
 template <class T>
 void chmin(T& a, T b) {
@@ -17,6 +16,7 @@ int main() {
 
     // dp[i][v]: i番目までの品で、価値の和がvになる、最小の重さの和
     vector<vector<ll>> dp(N + 1, vector<ll>(100001, 1e+10));
+    dp[0][0] = 0;
     for (ll i = 0; i < N; i++) {
         for (ll j = 0; j < 100001; j++) {
             chmin(dp[i + 1][j], dp[i][j]);

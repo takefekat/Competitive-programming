@@ -1,25 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 
-void printb(unsigned int v)
-{
-    unsigned int mask = (int)1 << 10;
-    do
-        putchar(mask & v ? '1' : '0');
-    while (mask >>= 1);
+const int N = 8;
+const vector<int> a = {3, 5, 8, 10, 14, 17, 21, 39};
+
+// 目的の値 key の添字を返す (存在しない場合は -1)
+int binary_search(int key) {
+    int left = 0, right = (int)a.size() - 1;  // 配列 a の左端と右端
+    while (right >= left) {
+        int mid = left + (right - left) / 2;  // 区間の真ん中
+        if (a[mid] == key)
+            return mid;
+        else if (a[mid] > key)
+            right = mid - 1;
+        else if (a[mid] < key)
+            left = mid + 1;
+    }
+    return -1;
 }
 
-int main()
-{
 
-    ll N;
-    cin >> N;
+int main() {
 
-    for (int i = 0; i < (1 << N); i++)
-    {
-        printf("%d ", i);
-        printb(i);
-        printf("\n");
-    }
+    cout << binary_search(a.begin(),a.end(),10) << endl;  // 3
+    cout << binary_search(a.begin(),a.end(),3) << endl;   // 0
+    cout << binary_search(a.begin(),a.end(),39) << endl;  // 7
+
+    cout << binary_search(a.begin(),a.end(),-100) << endl;  // -1
+    cout << binary_search(a.begin(),a.end(),9) << endl;     // -1
+    cout << binary_search(a.begin(),a.end(),100) << endl;   // -1
 }
