@@ -4,27 +4,27 @@ typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<vll> vvll;
 
-void solve(long long N, std::vector<long long> A, std::vector<long long> B) {
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
+const string YES = "Yes";
+const string NO = "No";
+
+void solve(long long N, long long X, std::vector<long long> A) {
     ll ans = 0;
     for (ll i = 0; i < N; i++) {
-        ans += abs(A[i] - B[i]);
+        ans += A[i];
+        if (i % 2 == 1) ans--;
     }
-    cout << ans << endl;
+    cout << (ans <= X ? YES : NO) << endl;
 }
 
 int main() {
     long long N;
     std::scanf("%lld", &N);
+    long long X;
+    std::scanf("%lld", &X);
     std::vector<long long> A(N);
     for (int i = 0; i < N; i++) {
         std::scanf("%lld", &A[i]);
     }
-    std::vector<long long> B(N);
-    for (int i = 0; i < N; i++) {
-        std::scanf("%lld", &B[i]);
-    }
-    solve(N, std::move(A), std::move(B));
+    solve(N, X, std::move(A));
     return 0;
 }

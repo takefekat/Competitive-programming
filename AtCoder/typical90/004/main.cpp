@@ -16,8 +16,8 @@ void solve(long long H, long long W, std::vector<std::vector<long long>> A) {
 
     for (ll i = 0; i < H; i++) {
         for (ll j = 0; j < W; j++) {
-            printf("%Ld", tate[i] + yoko[j] - A[i][j]);
-            if (j = W - 1)
+            printf("%lld", tate[i] + yoko[j] - A[i][j]);
+            if (j == W - 1)
                 printf("\n");
             else
                 printf(" ");
