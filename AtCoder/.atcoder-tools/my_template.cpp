@@ -1,32 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include
 typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<vll> vvll;
 
-
-{% if mod %}
-const long long MOD = {{ mod }};
-{% endif %}
-{% if yes_str %}
+{ % if mod % }
+const long long MOD = {{mod}};
+{ % endif % } { % if yes_str % }
 const string YES = "{{ yes_str }}";
-{% endif %}
-{% if no_str %}
+{ % endif % } { % if no_str % }
 const string NO = "{{ no_str }}";
-{% endif %}
+{ % endif % }
 
-{% if prediction_success %}
-void solve({{ formal_arguments }}){
-
+{
+    % if prediction_success %
 }
-{% endif %}
+void solve({{formal_arguments}}){
 
-int main(){
-    {% if prediction_success %}
-    {{input_part}}
-    solve({{ actual_arguments }});
-    {% else %}
-    // Failed to predict input format
-    {% endif %}
+} {
+    % endif %
+}
+
+int main() {
+    { % if prediction_success % }
+    {
+        { input_part }
+    }
+    solve({{actual_arguments}});
+    { % else % }  // Failed to predict input format
+    {
+        % endif %
+    }
     return 0;
 }
