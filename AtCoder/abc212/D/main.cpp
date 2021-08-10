@@ -7,19 +7,11 @@ typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<vll> vvll;
 
-ll op(ll l, ll r) { return l + r; }
-
-ll e() { return 0; }
-
-ll mapping(F l, ll r) { return ll{r.a * l.a + r.size * l.b, r.size}; }
-
-F composition(F l, F r) { return F{r.a * l.a, r.b * l.a + l.b}; }
-
-F id() { return F{1, 0}; }
 
 int main() {
     ll Q;
     cin >> Q;
+
     for (ll i = 0; i < Q; i++) {
         ll p;
         cin >> p;
@@ -28,5 +20,10 @@ int main() {
         } else {
         }
     }
+
+
+    lazy_segtree<ll, op, e, F, mapping, composition, id> seg()
+
+
     return 0;
 }
