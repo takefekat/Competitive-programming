@@ -1,17 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <atcoder/all>
+using namespace atcoder;
 typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<vll> vvll;
 
+using mint = modint;
 
-const long long MOD = 7;
+void solve(long long N, long long P, long long Q, std::vector<long long> A) {
+    ll ans = 0;
 
-void solve(long long N, long long P, long long Q, std::vector<long long> A){
-
+    mint::set_mod(P);
+    for (ll i = 0; i < N; i++) {
+        for (ll j = i + 1; j < N; j++) {
+            for (ll k = j + 1; k < N; k++) {
+                for (ll l = k + 1; l < N; l++) {
+                    for (ll m = l + 1; m < N; m++) {
+                        mint res = (mint)A[i] * A[j] * A[k] * A[l] * A[m];
+                        if (res == Q) ans++;
+                    }
+                }
+            }
+        }
+    }
+    cout << ans << endl;
 }
 
-int main(){
+int main() {
     long long N;
     std::scanf("%lld", &N);
     long long P;
@@ -19,7 +35,7 @@ int main(){
     long long Q;
     std::scanf("%lld", &Q);
     std::vector<long long> A(N);
-    for(int i = 0 ; i < N ; i++){
+    for (int i = 0; i < N; i++) {
         std::scanf("%lld", &A[i]);
     }
     solve(N, P, Q, std::move(A));
