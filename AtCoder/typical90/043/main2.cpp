@@ -26,14 +26,14 @@ int main() {
 
     vector<vvll> dist(4, vvll(H, vll(W, INT_MAX)));
 
-    priority_queue<state> qu;
-    qu.push(state(si, sj, 0, 0));
-    qu.push(state(si, sj, 0, 1));
-    qu.push(state(si, sj, 0, 2));
-    qu.push(state(si, sj, 0, 3));
+    deque<state> qu;
+    qu.push_front(state(si, sj, 0, 0));
+    qu.push_front(state(si, sj, 0, 1));
+    qu.push_front(state(si, sj, 0, 2));
+    qu.push_front(state(si, sj, 0, 3));
     while (qu.size()) {
-        auto cur = qu.top();
-        qu.pop();
+        auto cur = qu.front();
+        qu.pop_front();
         if (dist[cur.dir][cur.h][cur.w] < cur.score) continue;
         dist[cur.dir][cur.h][cur.w] = cur.score;
 
@@ -50,7 +50,8 @@ int main() {
                 ll score = dist[cur.dir][cur.h][cur.w] + (i == cur.dir ? 0 : 1);
                 if (dist[i][h][w] > score) {
                     dist[i][h][w] = score;
-                    qu.push(state(h, w, score, i));
+                    if (i == cur.dir) qu.push_front(state(h, w, score, i));
+                    if (i != cur.dir) qu.push_back(state(h, w, score, i));
                 }
             }
         }

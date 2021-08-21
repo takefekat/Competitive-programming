@@ -24,21 +24,21 @@ int main() {
     vector<string> m(H);
     for (auto&& e : m) cin >> e;
 
-    vector<vvll> dist(4, vvll(H, vll(W, INT_MAX)));
+    vector<vvll> dist(H, vvll(W, vll(4, INT_MAX)));
 
-    priority_queue<state> qu;
-    qu.push(state(si, sj, 0, 0));
-    qu.push(state(si, sj, 0, 1));
-    qu.push(state(si, sj, 0, 2));
-    qu.push(state(si, sj, 0, 3));
+    deque<state> qu;
+    qu.push_front(state(si, sj, 0, 0));
+    qu.push_front(state(si, sj, 0, 1));
+    qu.push_front(state(si, sj, 0, 2));
+    qu.push_front(state(si, sj, 0, 3));
     while (qu.size()) {
-        auto cur = qu.top();
-        qu.pop();
-        if (dist[cur.dir][cur.h][cur.w] < cur.score) continue;
-        dist[cur.dir][cur.h][cur.w] = cur.score;
+        auto cur = qu.front();
+        qu.pop_front();
+        if (dist[cur.h][cur.w][cur.dir] < cur.score) continue;
+        dist[cur.h][cur.w][cur.dir] = cur.score;
 
         if (cur.h == ti and cur.w == tj) {
-            cout << dist[cur.dir][ti][tj] << endl;
+            cout << dist[ti][tj][cur.dir] << endl;
             break;
         }
 
@@ -47,10 +47,11 @@ int main() {
             ll h = cur.h + dh[i];
             ll w = cur.w + dw[i];
             if (h >= 0 and h < H and w >= 0 and w < W and m[h][w] != '#') {
-                ll score = dist[cur.dir][cur.h][cur.w] + (i == cur.dir ? 0 : 1);
-                if (dist[i][h][w] > score) {
-                    dist[i][h][w] = score;
-                    qu.push(state(h, w, score, i));
+                ll score = dist[cur.h][cur.w][cur.dir] + (i == cur.dir ? 0 : 1);
+                if (dist[h][w][i] > score) {
+                    dist[h][w][i] = score;
+                    if (i == cur.dir) qu.push_front(state(h, w, score, i));
+                    if (i != cur.dir) qu.push_back(state(h, w, score, i));
                 }
             }
         }
