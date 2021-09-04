@@ -13,6 +13,7 @@ void solve(long long N, long long Q, std::vector<long long> A,
             ll idx = (head + x[i]) % N;
             ll idy = (head + y[i]) % N;
             swap(A[idx], A[idy]);
+            –
         } else if (T[i] == 2) {
             head--;
             if (head == -1) head = N - 1;
