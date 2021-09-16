@@ -8,6 +8,7 @@ void solve(std::string s) {
     while (s.size() % 3 != 0) s += "x";
     ll N = s.size();
 
+    // dp[i][j]: i番目から
     vvll dp(N, vll(N, 0));
     for (ll w = 2; w < N; w += 3) {
         for (ll i = 0; i + w < N; i++) {
