@@ -15,12 +15,14 @@ for j in range(q):
     for i in range(n):
         if T[j] == S[i]:
             C = C + 1
+            break
 
 C = 0
 for T_e in T:
     for S_e in S:
         if T_e == S_e:
             C = C + 1
+            break
 
 # プログラムの結果を出力する
 print(C)
