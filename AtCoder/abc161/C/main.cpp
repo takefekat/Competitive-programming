@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef vector<ll> vll;
-typedef vector<vll> vvll;
-
+using ll = long long;
+using ld = long double;
+using vll = vector<ll>;
+using vvll = vector<vll>;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define all(x) (x).begin(), (x).end()
 
 
 void solve(long long N, long long K){
@@ -12,9 +14,9 @@ void solve(long long N, long long K){
 
 int main(){
     long long N;
-    scanf("%lld",&N);
+    std::scanf("%lld", &N);
     long long K;
-    scanf("%lld",&K);
+    std::scanf("%lld", &K);
     solve(N, K);
     return 0;
 }

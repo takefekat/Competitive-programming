@@ -1,14 +1,11 @@
 #include <bits/stdc++.h>
-#include <atcoder/all>
-using namespace atcoder;
 using namespace std;
 using ll = long long;
 using ld = long double;
 using vll = vector<ll>;
 using vvll = vector<vll>;
-#define rep(i,n) for(int i=0; i<(int)(n); i++)
-#define all(x) (x).begin(),(x).end() 
-
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define all(x) (x).begin(), (x).end()
 
 {% if mod %}
 const long long MOD = {{ mod }};
