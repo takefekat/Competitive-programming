@@ -1,21 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-
+using ll = long long;
+using ld = long double;
+using vll = vector<ll>;
+using vvll = vector<vll>;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define all(x) (x).begin(), (x).end()
 
 
 void solve(long long N, std::vector<long long> a, std::vector<long long> b){
 
 }
 
-signed main(){
+int main(){
     long long N;
-    scanf("%lld",&N);
+    std::scanf("%lld", &N);
     std::vector<long long> a(N);
     std::vector<long long> b(N);
     for(int i = 0 ; i < N ; i++){
-        scanf("%lld",&a[i]);
-        scanf("%lld",&b[i]);
+        std::scanf("%lld", &a[i]);
+        std::scanf("%lld", &b[i]);
     }
     solve(N, std::move(a), std::move(b));
     return 0;

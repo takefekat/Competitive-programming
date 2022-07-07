@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef vector<ll> vll;
-typedef vector<vll> vvll;
+using ll = long long;
+using ld = long double;
+using vll = vector<ll>;
+using vvll = vector<vll>;
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define all(x) (x).begin(), (x).end()
 
-signed main() {
-  ll N;
-  cin >> N;
-  vll p(N);
-  for (ll i = 0; i < N; i++) {
-    cin >> p[i];
-  }
 
-  return 0;
+
+int main(){
+    // Failed to predict input format
+    return 0;
 }
