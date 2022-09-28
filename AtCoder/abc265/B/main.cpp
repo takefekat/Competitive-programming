@@ -22,12 +22,10 @@ int main(){
         ll x, y;
         cin >> x >>y;
         x--;
-
         xy[x] = y;
     }
 
     for (ll i = 0; i < N-1; i++) {
-        
         if( T > A[i] ) {
             T -= A[i];
             if( xy.find(i+1) != xy.end() ){

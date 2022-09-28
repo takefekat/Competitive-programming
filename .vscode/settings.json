@@ -108,5 +108,9 @@
         "stop_token": "cpp",
         "syncstream": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "editor.cursorStyle": "line",
+    "editor.defaultFormatter": null,
+    "cmake.configureSettings": {},
+    "editor.formatOnSave": true
 }
