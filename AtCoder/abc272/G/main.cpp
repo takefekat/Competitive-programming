@@ -8,10 +8,17 @@ using vvll = vector<vll>;
 #define all(x) (x).begin(), (x).end()
 
 
+void solve(long long N, std::vector<long long> A){
+
+}
+
 int main(){
-    ll a,b,c,d;    
-    cin >> a >> b >> c >> d;
-    cout << (a+b)*(c-d) << endl;
-    cout << "Takahashi" << endl;
+    long long N;
+    std::scanf("%lld", &N);
+    std::vector<long long> A(N);
+    for(int i = 0 ; i < N ; i++){
+        std::scanf("%lld", &A[i]);
+    }
+    solve(N, std::move(A));
     return 0;
 }

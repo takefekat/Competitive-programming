@@ -8,10 +8,8 @@ using vvll = vector<vll>;
 #define all(x) (x).begin(), (x).end()
 
 
+
 int main(){
-    ll a,b,c,d;    
-    cin >> a >> b >> c >> d;
-    cout << (a+b)*(c-d) << endl;
-    cout << "Takahashi" << endl;
+    // Failed to predict input format
     return 0;
 }

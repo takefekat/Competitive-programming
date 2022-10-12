@@ -9,9 +9,17 @@ using vvll = vector<vll>;
 
 
 int main(){
-    ll a,b,c,d;    
-    cin >> a >> b >> c >> d;
-    cout << (a+b)*(c-d) << endl;
-    cout << "Takahashi" << endl;
+    ll N;
+    cin >> N;
+
+    vector<ll> A(N);
+    for(int i = 0 ; i < N ; i++){
+        cin >> A[i];
+    }
+
+    ll ans = 0;
+    for(auto&& x : A) ans += x;
+    cout << ans << endl;
+
     return 0;
 }
