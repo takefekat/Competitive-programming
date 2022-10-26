@@ -29,9 +29,13 @@ int main(){
         }
     }
 
+    vector<ll> s(Q),t(Q);
     for (ll i = 0; i < Q; i++) {
-        ll s, t; cin >> s >> t;
-        cout << a[s-1][t-1] << endl;
+        cin >> s[i] >> t[i];
+    }
+    
+    for (ll i = 0; i < Q; i++) {
+        cout << a[s[i]-1][t[i]-1] << endl;
     }
     
     

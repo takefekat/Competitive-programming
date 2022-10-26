@@ -10,16 +10,24 @@ using vvll = vector<vll>;
 
 void solve(long long N, std::vector<long long> A){
     
-    if (N == 2 && ((A[0] ^ A[1]) & 1) == 1 ){
+    if (N == 2 && ((A[0] ^ A[1]) & 1) == 1 ) {
         cout << -1 << endl;
         return;
     }
-    
+    // 3:  011
+    // 5:  101
+    //xor: 110
+    // 0 ^ 0 = 0
+    // 0 ^ 1 = 1
+    // 1 ^ 0 = 1
+    // 1 ^ 1 = 0
+
+    // 110 --> 110 & 001 = 000
+
     vector<ll> even, odd;
     for(auto&& x : A) {
         if (x&1) odd.push_back(x);
-        else     even.push_back(x);
-        
+        else     even.push_back(x);  
     }
     
     sort(odd.begin(), odd.end());

@@ -13,9 +13,8 @@ const string NO = "No";
 
 int main(){
     ll N, M; cin >> N >> M;
-
     
-    // human[i] : i番目の人が参加した舞踏会のリスト
+    // human[i] : i番目の人が参加した舞踏会の集合
     vector<set<ll>> human(N);
     for (ll i = 0; i < M; i++) {
         ll k; cin >> k;
@@ -28,13 +27,19 @@ int main(){
     // i番目の人とj番目の人が同じ舞踏会に参加したか調べる
     bool ans = true;
     for (ll i = 0; i < N; i++) {
-        for (ll j = 0; j < N; j++) {
+        for (ll j = i+1; j < N; j++) {
+            bool is_together = false;
+            set<ll> res;
+            set_intersection(all(human[i]), all(human[j]), inserter(res, res.end()));
+            if( res.size() > 0) is_together = true;
+            /*
             bool is_together = false;
             for(auto&& x : human[i]) {
-                if (human[j].find(x) != human[j].end()) {
+                if (human[j].count(x) > 0) {
                     is_together = true;
                 }
             }
+            */
             ans &= is_together;
         }
     }
