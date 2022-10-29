@@ -8,17 +8,27 @@ using vvll = vector<vll>;
 #define all(x) (x).begin(), (x).end()
 
 
-void solve(long long N, std::vector<long long> A){
-
-}
 
 int main(){
-    long long N;
-    std::scanf("%lld", &N);
-    std::vector<long long> A(N);
-    for(int i = 0 ; i < N ; i++){
-        std::scanf("%lld", &A[i]);
+    ll N; cin >> N;
+    vector<ll> A(N);
+    for (ll i = 0; i < N; i++) cin >> A[i];
+
+    vector<ll> A_org = A;
+    sort(A.begin(), A.end());
+    A.erase(unique(A.begin(), A.end()), A.end());
+    
+    map<ll,ll> res; // A[i] 
+    for (ll i = 0; i < A.size(); i++) {
+        res[A[i]] = A.size() - i - 1;   // 1 2 7 8 : res[1] = 3 == 4 - 0 - 1
     }
-    solve(N, std::move(A));
+
+    vector<ll> ans(N,0);
+    for (ll i = 0; i < A_org.size(); i++) {
+        ans[res[A_org[i]]]++;
+    }
+
+    for (auto x : ans) cout << x << endl;
+
     return 0;
 }

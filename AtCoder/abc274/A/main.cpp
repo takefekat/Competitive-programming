@@ -8,15 +8,10 @@ using vvll = vector<vll>;
 #define all(x) (x).begin(), (x).end()
 
 
-void solve(long long A, long long B){
-
-}
-
 int main(){
-    long long A;
-    std::scanf("%lld", &A);
-    long long B;
-    std::scanf("%lld", &B);
-    solve(A, B);
+    ll A,B;
+    cin >> A >> B;
+    printf("%.3Lf\n",(ld)B/(ld)A);
+
     return 0;
 }

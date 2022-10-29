@@ -8,15 +8,22 @@ using vvll = vector<vll>;
 #define all(x) (x).begin(), (x).end()
 
 
-void solve(long long X, long long K){
-
-}
-
 int main(){
-    long long X;
-    std::scanf("%lld", &X);
-    long long K;
-    std::scanf("%lld", &K);
-    solve(X, K);
+    ll N;
+    ll K;
+    cin >> N >> K;
+
+    ll digit_mask = 1;
+    for (ll i = 0; i < K; i++) {
+        ll digit = (N / digit_mask) % 10; // 2048
+        if( digit >= 5 ){
+            N += digit_mask * 10;
+        }
+        N -= digit * digit_mask;
+        digit_mask *= 10;
+    }
+    cout << N << endl;
+    
+    
     return 0;
 }
